@@ -1,0 +1,476 @@
+
+// Fonts
+ @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+
+ @import "normalize";
+
+* { 
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #f5f8fa;
+}
+
+#nav-header {
+    position: sticky;
+    top: 0;
+    transition: .3s;
+    background: $dark;
+    overflow: auto;
+    z-index: 1;
+}
+
+.navscroll {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+#navbar ul {
+    list-style: none;
+    padding: 5px;
+    margin: 0;
+    text-align: right;
+}
+
+#navbar li {
+    display: inline-block;
+}
+
+#navbar li:active {
+    cursor: pointer;
+}
+
+#navbar ul a {
+    padding: 9px;
+    background: #eaeaea;
+    border-radius: 3px;
+    margin: 5px 3px;
+    transition: .25s;
+    display: inline-block;
+}
+
+#navbar ul a:active {
+    background: green;
+}
+
+#navbar a {
+    text-decoration: none;
+    color: $dark;
+}
+
+#navbar-logo {
+    display: none;
+}
+
+#logout-form {
+    display: none;
+}
+
+// Welcome Showcase
+
+#welcome-showcase {
+    color: $light;
+    text-align: center;
+    height: 100vh;
+    z-index: -2;
+    background: $dark;
+
+}
+
+#welcome-showcase-bg {
+    position: absolute;
+    background: #000 url('https://static.pexels.com/photos/416405/pexels-photo-416405.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+    opacity: .4;
+}
+
+#welcome-logo {
+    margin: auto;
+}
+
+#welcome-showcase-content {
+    padding-top: 50px;
+    z-index: 0;
+    position: relative;
+}
+
+#welcome-showcase-button {
+    display: inline-block;
+    background: $dark;
+    color: $light;
+    margin: 0px;
+    padding: 15px 20px;
+    border-radius: $btn-border-radius;
+    transition: .25s;
+    text-decoration: none;
+    border: 1px solid #a9a9a9;
+}
+
+#welcome-showcase-button:active {
+    color: $dark;
+    background: $light;
+    cursor: pointer;
+}
+
+// Welcome Mission
+
+#welcome-mission {
+    background: #fff;
+    text-align: center;
+    padding: 20px;
+    padding-top: 25px;
+    line-height: 1.25;
+}
+
+// Welcome How
+
+#welcome-how {
+    text-align: center;
+    color: $light;
+    padding: 20px;
+    padding-top: 25px;
+    background: $dark;
+}
+
+#welcome-how-flex {
+    list-style: none;
+    color: $dark;
+    padding-top: 25px;
+}
+
+#welcome-how-flex li {
+    background: #fff;
+    margin: 10px;
+    line-height: 1.25;
+}
+
+.welcome-card-content {
+    padding: 25px;
+    padding-bottom: 10px;
+}
+
+// Welcome About/Contact
+
+#welcome-about {
+    background: #fff;
+    color: $dark;
+    text-align: center;
+    padding: 25px;
+    padding-top: 25px;
+}
+
+.panel {
+    border-radius: 5px;
+    border: 1px solid silver;
+    margin: auto;
+    width: 95%;
+    padding: 25px;
+    padding-top: 15px;
+    background: #fff;
+    margin-top: 50px;
+}
+
+.panel p {
+    margin: 0;
+    padding: 0;
+}
+
+.panel-heading {
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+
+}
+
+.form-input {
+    margin-bottom: 10px;
+}
+
+.form-input label, .form-input input {
+    display: block;
+}
+
+.form-input label {
+    margin-bottom: 5px;
+}
+
+.form-input input {
+    border: 1px solid silver;
+    border-radius: 3px;
+    height: 30px;
+    width: 100%;
+    padding-left: 15px;
+    font-size: 15px;
+}
+
+.form-input input:focus {
+    border-color: #98cbe8;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(152, 203, 232, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(152, 203, 232, 0.6);
+}
+
+.has-error {
+    color: #b00000;
+}
+
+.has-error > input {
+    border-color: #a94442;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.has-error > input:focus {
+  border-color: #843534;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+}
+
+.help-block {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.btn {
+    margin-top: 10px;
+    padding: 7px;
+    display: inline-block;
+    text-shadow: none;
+    width: 4em;
+    height: 2.5em;
+}
+
+.btn-main {
+    background: $dark;
+    color: $light;
+    border: none;
+    border-radius: 3px;
+    transition: .25s;
+    margin-right: 10px;
+    outline: 0;
+}
+
+.btn-main:active {
+    background: green;
+    color: $light;
+    cursor: pointer;
+}
+
+.btn-link {
+    text-decoration: none; 
+    color: #428bff;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+// Coming Soon - temporary
+
+#coming-soon {
+    margin-top: 100px;
+    text-align: center;
+}
+
+#coming-soon h1 {
+    margin-top: 0;
+    color: white;
+}
+
+#coming-soon-form > input[type=email] {
+    border: 1px solid silver;
+    height: 40px;
+    width: 75%;
+    border-radius: 3px;
+    font-size: 15px;
+    padding-left: 5px;
+    margin-bottom: 10px;
+}
+
+#coming-soon-form > input[type=submit] {
+    padding: 15px;
+    background: #1a1e6b;
+    width: 130px;
+    text-align: center;
+    border-radius: 3px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: .25s;
+    display: block;
+    margin: auto;
+}
+
+#coming-soon-form > input:focus {
+    border-color: #98cbe8;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(152, 203, 232, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(152, 203, 232, 0.6);
+}
+
+#coming-soon-form > input[type=submit]:active {
+    background: #3586ff;
+}
+
+
+#coming-soon-form.coming-error > input {
+    border-color: #a94442;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+
+#coming-soon-form.coming-error > input:focus {
+    border-color: #843534;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+}
+
+.coming-help {
+    margin-top: 10px;
+    color: #b00000;
+}
+
+.coming-success {
+    margin-top: 10px;
+    color: #00d208;
+}
+
+#countdown {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.countdown-container {
+    margin: auto 5px;
+}
+
+.countdown-number {
+    background: #1a1e6b;
+    padding: 10px;
+    border-radius: 3px;
+    color: #fff;
+    width: 60px;
+}
+
+@media only screen and (min-width: 700px) {
+    .flex {
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+    }
+    
+    #navbar li:hover {
+        cursor: pointer;
+    }
+    
+    #navbar ul a:hover {
+        background: green;
+    }
+    
+    #navbar-logo {
+        width: 200px;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        margin-left: 5px;
+        margin-top: 5px;
+        background: none;
+        float: left;
+        display: inline;
+    }
+    
+    #welcome-showcase {
+        height: 450px;
+    }
+    
+    #welcome-showcase-bg {
+        height: 450px;
+    }
+    
+    #welcome-showcase-button:hover {
+        color: $dark;
+        background: $light;
+        cursor: pointer;
+    }
+    
+    #welcome-showcase-content {
+        grid-column: 6/8;
+    }
+    
+    #welcome-mission > div {
+        grid-column: 4/10;
+    }
+    
+    #welcome-how-flex {
+        justify-content: space-around;
+        padding: 15px;
+    }
+    
+    #welcome-how-flex li {
+        width: 29%;
+    }
+    
+    .welcome-box {
+        grid-column: span 6;
+    }
+    
+    .panel {
+        width: 50%;
+    }
+    
+    .btn-main:hover {
+        background: green;
+        color: $light;
+        cursor: pointer;
+    }
+    
+    #coming-soon img {
+        width: 30%;
+        height: auto;
+    }
+    
+    #coming-soon-form > input[type=email] {
+        width: 500px;
+        height: 51px;
+        margin-top: 5px;
+    }    
+    
+    #coming-soon-form > input[type=submit] {
+        width: 100px;
+        height: 50px;
+        display: inline;
+    }
+    
+    #coming-soon-form > input[type=submit]:hover {
+        background: #3586ff;
+    }
+}
