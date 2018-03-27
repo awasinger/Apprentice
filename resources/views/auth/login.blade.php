@@ -5,7 +5,7 @@
 <section>
 <div class="panel">
     <div class="panel-heading">
-        <h3>Login</h3>
+        Login
     </div>
     
     <div class="panel-body">

@@ -27,7 +27,7 @@
                 <img src="https://static.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg">
                 <div class="welcome-card-content">
                     <h3>Finding Internships</h3>
-                    <p>With Apprentice, we work to find you an internship in a field that you actually enjoy, whichi in turn
+                    <p>With Apprentice, we work to find you an internship in a field that you actually enjoy, which in turn
                     allows for you to gain knowledge in a field that might even turn out to be your future career, giving you an advantage
                     over the competition.</p>
                 </div>
@@ -66,8 +66,8 @@
     </div>
     <div class="welcome-box test">
         <h1>Contact Us</h1>
-        <p>314-911-9111</p>
-        <p>contact@apprentice.local</p>
+        <p>314-743-7071</p>
+        <p>apprenticestl@gmail.com</p>
     </div>
 </section>
           

@@ -1,20 +1,33 @@
 
 // Fonts
- @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 // Variables
 @import "variables";
 
- @import "normalize";
+// Normalizer
+@import "normalize";
 
 * { 
     box-sizing: border-box;
     font-family: 'Raleway', sans-serif;
 }
 
+::placeholder {
+    color: #a1a3a8;
+}
+
+html {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 img {
     width: 100%;
     height: auto;
+}
+
+input[type=file] {
+    display: none;
 }
 
 ul {
@@ -28,58 +41,140 @@ body {
     background: #f5f8fa;
 }
 
-#nav-header {
+.body-shade {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    opacity: .5;
+    transition: .5s;
+}
+
+.nav-header {
     position: sticky;
     top: 0;
     transition: .3s;
     background: $dark;
     overflow: auto;
     z-index: 1;
+    overflow: visible;
 }
 
 .navscroll {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
-#navbar ul {
-    list-style: none;
-    padding: 5px;
-    margin: 0;
-    text-align: right;
+// remove click outline
+
+@media only screen and (max-width: 700px) {
+    
+    .nav-list-container {
+        position: fixed;
+        overflow: hidden;
+        width: 0;
+        top: 0;
+        left: 0;
+        background: #fff;
+        height: 100%;
+        transition: .5s;
+    }
+    
+    .nav-open {
+        width: 40%;
+    }
+    
+    .nav-closed {
+        width: 0;
+    }
+    
+    .nav-list {
+        margin: auto;
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .nav-link {
+        text-decoration: none;
+        font-size: 20px;
+        color: #000;
+        margin: 5px 15px;
+    }
 }
 
-#navbar li {
+.nav-list {
+    list-style: none;
+}
+
+.nav-link {
     display: inline-block;
 }
 
-#navbar li:active {
+.navbar {
+    overflow: auto;
+}
+
+.navbar li:active {
     cursor: pointer;
 }
 
-#navbar ul a {
-    padding: 9px;
-    background: #eaeaea;
-    border-radius: 3px;
-    margin: 5px 3px;
-    transition: .25s;
-    display: inline-block;
+.navbar-logo {
+    width: 200px;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    margin-left: 5px;
+    margin-top: 5px;
+    background: none;
+    float: right;
+    display: inline;
 }
 
-#navbar ul a:active {
-    background: green;
-}
-
-#navbar a {
+.mobile-open {
+    float: left;
+    font-size: 35px;
     text-decoration: none;
-    color: $dark;
+    color: #fff;
+    margin-top: 25px;
+    margin-left: 5px;
+    line-height: 0;
+    height: 25px;
 }
 
-#navbar-logo {
-    display: none;
+.mobile-close {
+    float: left;
+    font-size: 35px;
+    text-decoration: none;
+    color: #000;
+    line-height: 0;
+    margin-top: 25px;
+    margin-left: 10px;
+    display: block;
+}
+
+.mobile-body-active {
+    background: #000;
+    transition: .5s;
+    opacity: .25;
+}
+
+#logout-button:hover {
+    cursor: pointer;
 }
 
 #logout-form {
     display: none;
+}
+
+.sub-header {
+    border-bottom: 1px solid #c3c3c3;
+    text-align: center;
+    padding-bottom: -5px;
+    width: 85%;
+    margin: auto;
+    margin-bottom: 0px;
 }
 
 // Welcome Showcase
@@ -180,6 +275,11 @@ body {
     padding-top: 25px;
 }
 
+.panel-container {
+    margin-top: 0;
+    padding-top: 0;
+}
+
 .panel {
     border-radius: 5px;
     border: 1px solid silver;
@@ -199,49 +299,110 @@ body {
 .panel-heading {
     padding-bottom: 5px;
     margin-bottom: 10px;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #c3c3c3;
+    font-weight: bold;
+}
 
+.panel-heading h3 {
+    padding: 0;
+    margin: 0;
+}
+
+.panel-heading-center {
+    text-align: center;
+}
+
+.panel-heading-big {
+    padding-bottom: 2px;
+}
+
+.panel-body {
+    color: #474747;
+    line-height: 1.5;
+}
+
+.panel-space-small {
+    margin-top: 10px;
+}
+
+.panel-btn {
+    padding-bottom: 10px;
+}
+
+.panel-list {
+    list-style: none;
 }
 
 .form-input {
     margin-bottom: 10px;
 }
 
-.form-input label, .form-input input {
+.form-input label, .form-input input, .form-input textarea {
     display: block;
+}
+
+.form-input input[type=file] {
+    display: none;
 }
 
 .form-input label {
     margin-bottom: 5px;
 }
 
-.form-input input {
+.form-input input, .form-input textarea {
     border: 1px solid silver;
     border-radius: 3px;
     height: 30px;
     width: 100%;
     padding-left: 15px;
     font-size: 15px;
+    transition: .25s;
 }
 
-.form-input input:focus {
+.form-input textarea {
+    resize: none;
+    height: 75px;
+    padding-top: 10px;
+}
+
+.form-input input:focus, .form-input textarea:focus {
     border-color: #98cbe8;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(152, 203, 232, 0.6);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(152, 203, 232, 0.6);
 }
 
+.form-input-half {
+    margin-top: 5px;
+}
+
+.form-success {
+    margin-top: 10px;
+    color: #00c207;
+    text-align: center;
+//     color: #00d208;
+}
+
+.form-space-top {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.form-label-sm {
+    margin-bottom: 10px;
+}
+
 .has-error {
     color: #b00000;
 }
 
-.has-error > input {
+.has-error > input, .has-error > textarea {
     border-color: #a94442;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
-.has-error > input:focus {
+.has-error > input:focus, .has-error > textarea:focus {
   border-color: #843534;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
@@ -257,7 +418,7 @@ body {
     padding: 7px;
     display: inline-block;
     text-shadow: none;
-    width: 4em;
+    min-width: 4em;
     height: 2.5em;
 }
 
@@ -269,12 +430,17 @@ body {
     transition: .25s;
     margin-right: 10px;
     outline: 0;
+    font-family: arial;
 }
 
 .btn-main:active {
-    background: green;
+    background: #428bff;
     color: $light;
     cursor: pointer;
+}
+
+.btn-search-horizontal {
+    display: none;
 }
 
 .btn-link {
@@ -282,8 +448,57 @@ body {
     color: #428bff;
 }
 
-.btn-link:hover {
+.link-warning {
+    color: red;
+}
+
+.btn-link:active {
     text-decoration: underline;
+    cursor: pointer;
+}
+
+.btn-right {
+    float: right;
+}
+
+.btn-top-sm {
+    margin-top: 0px;
+}
+
+.btn-warning {
+    min-width: 7.6em;
+}
+
+.btn-warning:active {
+    background: red;
+}
+
+.answer-indent {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.answer-indent input[type=text] {
+    display: inline-block;
+    margin-left: 5px;
+    width: 50%;
+}
+
+.answer-indent input[type=radio] {
+    height: 15px;
+    width: 15px;
+    margin: auto 5px;
+}
+
+.answer-indent label {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.multiple-choice {
+    margin-bottom: 10px;
 }
 
 // Coming Soon - temporary
@@ -352,11 +567,6 @@ body {
     color: #b00000;
 }
 
-.coming-success {
-    margin-top: 10px;
-    color: #00d208;
-}
-
 #countdown {
     display: flex;
     flex-direction: row;
@@ -377,6 +587,50 @@ body {
     width: 60px;
 }
 
+.course-search {
+    width: 75%;
+    margin: auto;
+    margin: 25px auto;
+    margin-bottom: 25px;
+}
+
+.course-search label {
+    text-align: center;
+}
+
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+.StripeElement {
+    background-color: white;
+    height: 40px;
+    padding: 10px 12px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+    border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+}
+
+.stripe-form {
+    margin: 15px auto;
+    display: none;
+}
+
+
 @media only screen and (min-width: 700px) {
     .flex {
         display: flex;
@@ -388,24 +642,50 @@ body {
         grid-template-columns: repeat(12, 1fr);
     }
     
-    #navbar li:hover {
-        cursor: pointer;
+    .mobile-open {
+        display: none;
     }
     
-    #navbar ul a:hover {
-        background: green;
+    .mobile-close {
+        display: none;
     }
     
-    #navbar-logo {
-        width: 200px;
-        height: auto;
+    .nav-list{
+        list-style: none;
+        padding: 5px;
         margin: 0;
-        padding: 0;
-        margin-left: 5px;
-        margin-top: 5px;
-        background: none;
+        text-align: right;
+    }
+    
+    .nav-item {
+        display: inline-block;
+    }
+    
+    .nav-link {
+        padding: 9px;
+        background: #eaeaea;
+        border-radius: 3px;
+        margin: 5px 3px;
+        transition: .25s;
+        text-decoration: none;
+        color: $dark;
+    }
+    
+    .nav-link:hover {
+        background: #428bff;
+        color: #fff;
+    }
+    
+    .navbar-logo {
         float: left;
-        display: inline;
+    }
+    
+    .body-shade {
+        display: none;
+    }
+    
+    .sub-header {
+        width: 45%;
     }
     
     #welcome-showcase {
@@ -447,9 +727,52 @@ body {
         width: 50%;
     }
     
+    .panel-wide {
+        width: 75%;
+        margin: auto;
+        margin-top: 50px;
+    }
+    
+    .form-search-horizontal { // button weird in firefox
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 10px;
+        align-items: center;
+    }
+    
+    .form-search-horizontal input[type=text] {
+        width: 50%;
+        height: 35px;
+    }
+    
+    .answer-indent {
+        margin-left: 10px;
+    }
+    
+    .form-input-half input {
+        width: 49.7%;
+    }
+    
+    .btn-search-horizontal {
+        margin-top: 0;
+        height: 35px;
+        margin-left: 3px;
+        display: inline;
+    }
+    
     .btn-main:hover {
-        background: green;
-        color: $light;
+        background: #428bff;
+        color: #fff;
+        cursor: pointer;
+    }
+    
+    .btn-warning:hover {
+        background: red;
+    }
+    
+    .btn-link:hover {
+        text-decoration: underline;
         cursor: pointer;
     }
     

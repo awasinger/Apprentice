@@ -12,24 +12,24 @@
 <body>
     <main>
         <section id="coming-soon">
-            <div id="coming-soon-bg"></div>
+            
             <img src="/logo-black.png">
             
             <div>
-                <p>Helping high school students get internships.</p>
+                <p>Helping high school students get internships. Coming Soon.</p>
 
                 <form id="coming-soon-form" method="post" action="/notify" class="{{ $errors->has('email') ? 'coming-error' : '' }}">
                     {{ csrf_field() }}
                     <input type="email" name="email" placeholder="Be the first to know. Enter your email." required>
-                    <input type="submit" class="" value="Notify Me">
+                    <input type="submit" value="Notify Me">
                     
                     @if ($errors->has('email'))
                         <div class="coming-help">
                             <strong>{{ $errors->first('email') }}</strong>
                         </div>
-                    @elseif(session('success'))
-                        <div class="coming-success">
-                            <strong>{{ session('success') }}</strong>
+                    @elseif (session('success'))
+                        <div class="form-success">
+                            {{ session('success') }}
                         </div>
                     @endif
                 </form>

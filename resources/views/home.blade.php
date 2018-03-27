@@ -2,26 +2,48 @@
 
 @section('content')
 <section>
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <p>Dashboard</p>
-                </div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <p>You are logged in!</p>
-                </div>
+    <div class="panel-container">
+<!--
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Dashboard
+            </div>
+    
+            <div class="panel-body">
+                <p>Welcome, {{ Auth::user()->name }}!</p>
             </div>
         </div>
+-->
+        @if (Auth::user()->business)
+            <div class="sub-header">
+                <h4>Courses You Have Made</h4>
+            </div>
+            @foreach ($courses as $course)
+                <div class="panel panel-space-small" >
+                    <div class="panel-heading">
+                        <a href="/courses/edit/{{ $course->id }}" class="btn-link">{{ $course->name }}</a>
+                    </div>
+                    <div class="panel-body">
+                        {{ $course->description }}
+                    </div>
+                </div>
+            @endforeach
+        @else
+            <div class="sub-header">
+                <h4>Courses You Own</h4>
+                {{ session('success') }}
+            </div>
+            @foreach ($courses as $course)
+                <div class="panel panel-space-small">
+                    <div class="panel-heading">
+                        <a href="/courses/show/{{ $course->id }}" class="btn-link">{{ $course->name }}</a>
+                    </div>
+                    <div class="panel-body">
+                        {{ $course->description }}
+                    </div>
+                </div>
+            @endforeach
+        @endif
     </div>
-</div>
 </section>
 @endsection
