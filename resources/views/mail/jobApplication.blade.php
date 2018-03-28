@@ -5,7 +5,7 @@
     @endslot
     
     @slot('body')
-        <p>{{ $name }} has gotten a score of {{ $score }}% on {{ $course }}</p>
+        <p>{{ $name }} ({{ $email }}) has gotten a score of {{ $score }}% on {{ $course }}</p>
         <p>Here is a short message from {{ $name }} about why they should be on your team.</p>
         <hr>
         <p>{{ $app }}</p>

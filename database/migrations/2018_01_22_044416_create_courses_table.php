@@ -20,7 +20,7 @@ class CreateCoursesTable extends Migration
             $table->text('description');
             $table->integer('cost');
             $table->text('questions');
-            $table->text('answers');
+            $table->string('paths');
             $table->timestamps();
         });
     }

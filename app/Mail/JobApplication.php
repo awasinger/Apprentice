@@ -16,12 +16,13 @@ class JobApplication extends Mailable
      *
      * @return void
      */
-    public function __construct($apply, $name, $course, $score)
+    public function __construct($apply, $name, $course, $score, $email)
     {
         $this->apply = $apply;
         $this->name = $name;
         $this->course = $course;
         $this->score = $score;
+        $this->email = $email;
     }
 
     /**
@@ -36,6 +37,7 @@ class JobApplication extends Mailable
             'name' => $this->name,
             'course' => $this->course,
             'score' => $this->score,
+            'email' => $this->email,
         ]);
     }
 }

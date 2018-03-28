@@ -64,6 +64,7 @@ Route::post('/notify', 'HomeController@notify'); // take away controller method 
     * Change Email driver to smtp
     * Disable Debug mode
     * Switch to Stripe public keys - verify account
+    * Remove Unnecessary routes and views
     
     ------ To do
     * Email application - done
