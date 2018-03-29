@@ -49,6 +49,10 @@
                     </div>
                 @endif
             </form>
+            <form action="/settings/delete" method="post" id="delete-account">
+                {{ csrf_field() }}
+                <button class="btn btn-main btn-warning" id="delete-button" type="button">Delete Your Account</button>
+            </form>
         </div>
     </div>
 </section>

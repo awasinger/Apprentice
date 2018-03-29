@@ -11,6 +11,7 @@ use App\Mail\BusinessApplication;
 use App\Mail\JobApplication;
 use App\Mail\NotifyRelease;
 use App\Course;
+use App\User;
 use Auth;
 
 class HomeController extends Controller
@@ -83,6 +84,19 @@ class HomeController extends Controller
         $businessEmail = $course->business()->value('email');
         Mail::to($businessEmail)->send(new JobApplication($request->apply, Auth::user()->name, $course->name, session('percent'), Auth::user()->email));
         $request->session()->flash('success', 'Your Application Was Sent! Good Luck!');
+        return redirect('/');
+    }
+    
+    public function destroy(Request $request) {
+        DB::table('courseOwners')->where('user_id', Auth::id())->delete();
+        DB::table('customers')->where('user_id', Auth::id())->delete();
+        
+        $user = User::findOrFail(Auth::id());
+        if ($user->business) {
+            DB::table('courses')->where('business_id', $user->business_id)->delete();
+        }
+        $user->delete();
+        
         return redirect('/');
     }
 

@@ -51,6 +51,8 @@ Route::post('/courses/take', 'CoursesController@answer');
 
 Route::post('/apply', 'HomeController@apply');
 
+Route::post('/settings/delete', 'HomeController@destroy');
+
 Route::get('/coming', function () { // remove when released
     return view('coming');
 });
@@ -67,6 +69,7 @@ Route::post('/notify', 'HomeController@notify'); // take away controller method 
     * Remove Unnecessary routes and views
     
     ------ To do
+    * Delete Account
     * Email application - done
     * Redesign dashboard
     * Confirmation messages for updated resources

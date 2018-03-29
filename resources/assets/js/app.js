@@ -252,14 +252,10 @@ if ($('.file-remove').length) {
     });
 }
 
-/*
-if ($('#multiple-choice').length) {
-    $('answer-question').click(function {
-        $.ajax({
-            url: 'http://apprentice.local/courses/take',
-            method: 'POST',
-            data: 
-        });
+if ($('#delete-button').length) {
+    $('#delete-button').click(function () {
+        if (confirm('Are You Sure You Want To Delete Your Account?')) {
+            $('#delete-account').submit();
+        }
     });
 }
-*/
