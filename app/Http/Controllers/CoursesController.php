@@ -219,11 +219,18 @@ class CoursesController extends Controller
     }
     
     public function answer(Request $request) {
+        
         $course = Course::findOrFail($request->course);
-        $answers = array_values($request->answer);
+        
+        $answers = (count($request->answer) ? array_values($request->answer) : []);
         $questions = json_decode($course->questions, true);
+        $completed = json_decode(Auth::user()->completed, true);
         $correct = [];
         $wrong = [];
+        
+        while (count($answers) != count($questions)) {
+            $answers[] = '';
+        }
         
         // Add correct answers to array
         
@@ -234,14 +241,19 @@ class CoursesController extends Controller
                 $correct[] = $i;
             }
         }
+        
         $request->session()->forget('key');
         $request->session()->flash('correct', $correct);
         
         $percent = floor(count($correct) / count($questions) * 100);
         if ($percent > 75) {
             $pass = 1;
+            $completed[] = $course->id;
+            Auth::user()->completed = json_encode($completed);
+            Auth::user()->save();
         } else {
             $pass = 0;
+            
         }
         $request->session()->flash('percent', $percent);
         return view('courses.score', compact('percent', 'pass', 'questions', 'wrong', 'course'));

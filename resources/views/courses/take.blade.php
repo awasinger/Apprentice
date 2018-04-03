@@ -25,11 +25,11 @@
                                 </div>
                                 <div>
                                     <input type="radio" name="answer[{{$key}}]" value="2">
-                                    <label>{{ $course->questions[$key][1][1] }}</label>
+                                    <label>{{ $course->questions[$key][1][2] }}</label>
                                 </div>
                                 <div>
                                     <input type="radio" name="answer[{{$key}}]" value="3">
-                                    <label>{{ $course->questions[$key][1][1] }}</label>
+                                    <label>{{ $course->questions[$key][1][3] }}</label>
                                 </div>
                             </div>
                     @endforeach

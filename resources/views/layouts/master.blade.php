@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title></title>
+    <title>Apprentice</title>
     <link rel="stylesheet" type="text/css" href="/css/app.css">
     <title>Apprentice</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">

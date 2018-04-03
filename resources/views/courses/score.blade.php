@@ -9,7 +9,7 @@
             <p>You got a {{session('percent')}}%!</p>
             @if ($pass)
                 <p>You passed!</p>
-                @if (!in_array($course->id, json_decode(Auth::user()->completed, true))) 
+                @if (in_array($course->id, json_decode(Auth::user()->completed, true))) 
                     <form method="post" action="/apply">
                         {{ csrf_field() }}
                         <input type="hidden" name="course" value="{{$course->id}}">

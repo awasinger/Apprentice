@@ -53,11 +53,13 @@ Route::post('/apply', 'HomeController@apply');
 
 Route::post('/settings/delete', 'HomeController@destroy');
 
+/*
 Route::get('/coming', function () { // remove when released
     return view('coming');
 });
 
 Route::post('/notify', 'HomeController@notify'); // take away controller method when the website is released
+*/
 
 /* 
     ------ Before Deployment
@@ -67,6 +69,7 @@ Route::post('/notify', 'HomeController@notify'); // take away controller method 
     * Disable Debug mode
     * Switch to Stripe public keys - verify account
     * Remove Unnecessary routes and views
+    * https://laravel.com/docs/5.6/deployment#autoloader-optimization
     
     ------ To do
     * Delete Account

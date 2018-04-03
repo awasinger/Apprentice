@@ -65,7 +65,7 @@ class HomeController extends Controller
                 'description' => $request->business[1],
                 'created_at' => date('Y-m-d H:i:s'),
             ]);
-            Mail::to(env('MAIL_USERNAME'))->send(new BusinessApplication($request->business));
+            Mail::to(Auth::user())->send(new BusinessApplication($request->business));
         }
         $user->save();
         $success = 'Account Updated';
@@ -76,13 +76,7 @@ class HomeController extends Controller
         $user = Auth::user();
         $course = Course::findOrFail($request->course);
         
-        $completed = json_decode($user->completed, true);
-        $completed[] = $course->id;
-        $user->completed = json_encode($completed);
-        $user->save();
-        
-        $businessEmail = $course->business()->value('email');
-        Mail::to($businessEmail)->send(new JobApplication($request->apply, Auth::user()->name, $course->name, session('percent'), Auth::user()->email));
+        Mail::to($course->business)->send(new JobApplication($request->apply, Auth::user()->name, $course->name, session('percent'), Auth::user()->email));
         $request->session()->flash('success', 'Your Application Was Sent! Good Luck!');
         return redirect('/');
     }
@@ -111,7 +105,7 @@ class HomeController extends Controller
             'email' => $request['email']
         ]);
         
-        Mail::to(env('MAIL_USERNAME'))->send(new NotifyRelease);
+        Mail::to($request->email)->send(new NotifyRelease);
         
         return back()->with('success', 'Your email was submitted! You will receive a confirmation email with some more information.');
     }

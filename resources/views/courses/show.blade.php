@@ -11,7 +11,7 @@
                 <div>
                 <p>Course Files</p>
                     @foreach ($course->paths as $path)
-                        <p><a href="/storage/{{ $path }}" class="btn-link">{{ explode('.', substr($path, 2))[0] }}</a></p>
+                        <p><a href="/storage/{{ $path }}" class="btn-link" target="_blank">{{ explode('.', substr($path, 2))[0] }}</a></p>
                     @endforeach
                     <hr>
                 </div>
