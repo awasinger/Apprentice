@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -10,15 +11,21 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class BusinessApplication extends Mailable
 {
     use Queueable, SerializesModels;
+    
+    public $user;
+    public $name;
+    public $desc;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($about)
+    public function __construct(User $user, $name,$desc)
     {
-        $this->about = $about;
+        $this->user = $user;
+        $this->name = $name;
+        $this->desc = $desc;
     }
 
     /**
@@ -28,7 +35,6 @@ class BusinessApplication extends Mailable
      */
     public function build()
     {
-        $about = $this->about;
-        return $this->view('mail.businessApplication', compact('about'));
+        return $this->markdown('mail.businessApplication');
     }
 }

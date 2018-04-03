@@ -1,17 +1,14 @@
-@component('layouts.mail')
+@component('mail::message')
+# Job Application for {{ $course }}
 
-    @slot('title')
-        <h1>Job Application For {{ $course }}</h1>
-    @endslot
-    
-    @slot('body')
-        <p>{{ $name }} ({{ $email }}) has gotten a score of {{ $score }}% on {{ $course }}</p>
-        <p>Here is a short message from {{ $name }} about why they should be on your team.</p>
-        <hr>
-        <p>{{ $app }}</p>
-        <hr>
-        <p>Thank you,</p>
-        <p>Your friends at Apprentice</p>
-    @endslot
+{{ $user->name }} ({{ $user->email }}) has gotten a score of {{ $score }}% on {{ $course }}
 
+Here is a short message from {{ $user->name }} about why they should be on your team.
+
+---
+{{ $apply }}
+***
+
+Thanks,<br>
+Your Friends At {{ config('app.name') }}
 @endcomponent

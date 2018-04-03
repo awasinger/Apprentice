@@ -65,7 +65,8 @@ class HomeController extends Controller
                 'description' => $request->business[1],
                 'created_at' => date('Y-m-d H:i:s'),
             ]);
-            Mail::to(Auth::user())->send(new BusinessApplication($request->business));
+            
+            Mail::to(Auth::user())->send(new BusinessApplication(Auth::user(), $request->business[0], $request->business[1]));
         }
         $user->save();
         $success = 'Account Updated';
@@ -76,7 +77,7 @@ class HomeController extends Controller
         $user = Auth::user();
         $course = Course::findOrFail($request->course);
         
-        Mail::to($course->business)->send(new JobApplication($request->apply, Auth::user()->name, $course->name, session('percent'), Auth::user()->email));
+        Mail::to($course->business)->send(new JobApplication(Auth::user(), $request->apply, $course->name, session('percent')));
         $request->session()->flash('success', 'Your Application Was Sent! Good Luck!');
         return redirect('/');
     }

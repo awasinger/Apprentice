@@ -36,14 +36,17 @@ class Course extends Model
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         
         if ($customer = DB::table('customers')->where('user_id', Auth::id())->first()) {
+/*
             $charge = Charge::create(array(
                 'amount' => $this->cost,
                 'currency' => "usd",
                 'customer' => $customer->cus_id,
             ));
+*/
             
             Auth::user()->courses()->attach($this->id);
         } else {
+/*
             $customer = Customer::create(array(
                 'email' => Auth::user()->email,
                 'source' => $token,
@@ -62,6 +65,7 @@ class Course extends Model
                 'source' => $token,
                 'user_id' => Auth::id(),
             ]);
+*/
             Auth::user()->courses()->attach($this->id);
         }
     }

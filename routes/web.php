@@ -63,6 +63,7 @@ Route::post('/notify', 'HomeController@notify'); // take away controller method 
 
 /* 
     ------ Before Deployment
+    * Uncomment stripe checkout
     * Change domain name
     * Change Email
     * Change Email driver to smtp
