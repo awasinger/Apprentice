@@ -6,6 +6,7 @@
         <div class="panel-heading">
             Create a course
         </div>
+        @if (Auth::user()->business_active)
         <div class="panel-body">
             <form method="post" action="/courses/create" id="course-create" enctype="multipart/form-data">
                 {{ csrf_field() }}
@@ -68,6 +69,11 @@
                 </div>
             </form>
         </div>
+        @else
+        <div class="panel-body">
+            You will be able to create courses when we verify your business!
+        </div>
+        @endif
     </div>
 </section>
 <script>var qTotal = 1;</script>

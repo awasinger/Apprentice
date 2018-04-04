@@ -19,7 +19,7 @@
                 <h4>Courses You Have Made</h4>
             </div>
             @foreach ($courses as $course)
-                <div class="panel panel-space-small" >
+                <div class="panel panel-space-small">
                     <div class="panel-heading">
                         <a href="/courses/edit/{{ $course->id }}" class="btn-link">{{ $course->name }}</a>
                     </div>

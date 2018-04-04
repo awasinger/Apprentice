@@ -17,6 +17,12 @@ Route::get('/', function () {
 
 Auth::routes(); // Add the app view back
 
+Route::get('/register/business', 'HomeController@registerBusiness')->middleware('guest');
+
+Route::post('/register/business', 'HomeController@businessApply')->middleware('guest')->name('registerBusiness');
+
+Route::get('/business/confirm/{token}', 'HomeController@activateBusiness');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/settings', 'HomeController@edit')->name('settings');
@@ -63,6 +69,8 @@ Route::post('/notify', 'HomeController@notify'); // take away controller method 
 
 /* 
     ------ Before Deployment
+    * Change to DB name on server
+    * Change http to https
     * Uncomment stripe checkout
     * Change domain name
     * Change Email
@@ -70,7 +78,7 @@ Route::post('/notify', 'HomeController@notify'); // take away controller method 
     * Disable Debug mode
     * Switch to Stripe public keys - verify account
     * Remove Unnecessary routes and views
-    * https://laravel.com/docs/5.6/deployment#autoloader-optimization
+    * https://laravel.com/docs/5.6/deployment
     
     ------ To do
     * Delete Account

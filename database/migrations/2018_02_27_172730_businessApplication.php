@@ -15,9 +15,8 @@ class BusinessApplication extends Migration
     {
         Schema::create('businessApplication', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->text('description');
-            $table->rememberToken();
+            $table->integer('business_id');
+            $table->string('token');
             $table->timestamps();
         });
     }

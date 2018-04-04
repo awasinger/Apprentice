@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use App\Notify;
+
 use App\Mail\BusinessApplication;
 use App\Mail\JobApplication;
 use App\Mail\NotifyRelease;
+use App\Mail\BusinessApproved;
+
 use App\Course;
 use App\User;
 use Auth;
@@ -23,7 +27,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('notify');
+        $this->middleware('auth')->except('notify', 'businessApply', 'registerBusiness');
     }
 
     /**
@@ -66,7 +70,7 @@ class HomeController extends Controller
                 'created_at' => date('Y-m-d H:i:s'),
             ]);
             
-            Mail::to(Auth::user())->send(new BusinessApplication(Auth::user(), $request->business[0], $request->business[1]));
+            Mail::to(config('mail.from.address'))->send(new BusinessApplication(Auth::user(), $request->business[0], $request->business[1]));
         }
         $user->save();
         $success = 'Account Updated';
@@ -89,9 +93,54 @@ class HomeController extends Controller
         $user = User::findOrFail(Auth::id());
         if ($user->business) {
             DB::table('courses')->where('business_id', $user->business_id)->delete();
+            Storage::deleteDirectory(public_path($user->business_id));
         }
         $user->delete();
         
+        return redirect('/');
+    }
+    
+    public function registerBusiness() {
+        return view('auth.registerBusiness');
+    }
+    
+    public function businessApply(Request $request) {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ]);
+        $max = (DB::table('users')->max('business_id') >= 0 ? DB::table('users')->max('business_id') : -1);
+        
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        $user->business = 1;
+        $user->business_id = ($max + 1);
+        $user->save();
+        
+        $token = md5($user->email);
+        
+        DB::table('businessApplication')->insert([
+            'business_id' => $user->business_id,
+            'token' => $token,
+        ]);
+        
+        Auth::login($user);
+        Mail::to(config('mail.from.address'))->send(new BusinessApplication(Auth::user(), $request->desc, $token));
+        return redirect()->home();
+    }
+    
+    public function activateBusiness($token) {
+        $record = DB::table('businessApplication')->where('token', $token)->first();
+        $business = User::where('business_id', $record->business_id)->first();
+        
+        $business->business_active = 1;
+        $business->save();
+        
+        Mail::to($business)->send(new BusinessApproved($business));
         return redirect('/');
     }
 
