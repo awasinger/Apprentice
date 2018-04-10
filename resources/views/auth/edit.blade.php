@@ -36,18 +36,6 @@
                 <div class="form-input">
                     <button type="submit" class="btn btn-main btn-top-sm">Change</button>
                 </div>
-                @if (!Auth::user()->business)
-                    <div class="form-input">
-                        <label for="business">Register as a Business</label>
-                        <input type="text" name="business[]" class="form-space-top" placeholder="Company Name">
-                    </div>
-                    <div class="form-input">
-                        <textarea  name="business[]" placeholder="Your company description"></textarea>
-                    </div>
-                    <div class="form-input">
-                        <button type="submit" class="btn btn-main btn-top-sm">Apply</button>
-                    </div>
-                @endif
             </form>
             <form action="/settings/delete" method="post" id="delete-account">
                 {{ csrf_field() }}

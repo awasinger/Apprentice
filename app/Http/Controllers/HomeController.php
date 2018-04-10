@@ -87,13 +87,14 @@ class HomeController extends Controller
     }
     
     public function destroy(Request $request) {
-        DB::table('courseOwners')->where('user_id', Auth::id())->delete();
-        DB::table('customers')->where('user_id', Auth::id())->delete();
+        $user = Auth::user();
+
+        DB::table('courseOwners')->where('user_id', $user->id)->delete();
+        DB::table('customers')->where('user_id', $user->id)->delete();
         
-        $user = User::findOrFail(Auth::id());
         if ($user->business) {
             DB::table('courses')->where('business_id', $user->business_id)->delete();
-            Storage::deleteDirectory(public_path($user->business_id));
+            Storage::deleteDirectory('public/'.$user->business_id);
         }
         $user->delete();
         
